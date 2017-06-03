@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_bailbonds"
+        android:icon="@drawable/icn_bailbonds"
+        android:title="@string/title_bailbonds"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/navigation_police"
+        android:icon="@drawable/icn_police"
+        android:title="@string/title_police"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/navigation_lawoffice"
+        android:icon="@drawable/icn_lawoffice"
+        android:title="@string/title_law_offices"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/navigation_contact"
+        android:icon="@drawable/icn_contact"
+        android:title="@string/title_quick_contacts"
+        app:showAsAction="withText"/>
+
+</menu>

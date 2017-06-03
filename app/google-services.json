@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1010895188427",
+    "firebase_url": "https://off-the-jail-33d50.firebaseio.com",
+    "project_id": "off-the-jail-33d50",
+    "storage_bucket": "off-the-jail-33d50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010895188427:android:5cf3e4787714dfcc",
+        "android_client_info": {
+          "package_name": "com.dcmmoguls.offthejail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010895188427-888tbe1gte0upvuqa5gf92g0oppsslk4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dcmmoguls.offthejail",
+            "certificate_hash": "03e74784710f2f1651068d6dbecd8f471b9728d2"
+          }
+        },
+        {
+          "client_id": "1010895188427-kj8fvhgvse3l3iden38s4roi6jcp9v69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2TxgIva7BT7P102htsBpXrP0psXPHaP8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1010895188427-kj8fvhgvse3l3iden38s4roi6jcp9v69.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
