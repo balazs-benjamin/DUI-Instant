@@ -1,6 +1,7 @@
 package com.dcmmoguls.offthejail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -79,7 +81,34 @@ public class LocationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_location, container, false);
         TextView tv = (TextView) view.findViewById(R.id.textView);
-        tv.setText("H. Craig Skinner\r\nLaw Office\r\n730 17th Street, Suite 650 \r\nDenver, Colorado 80202\r\nCell 303-638-5230\r\ncraigskinnerlaw@gmail.com");
+        tv.setText("H. Craig Skinner\r\nLaw Office\r\n730 17th Street, Suite 650 \r\nDenver, Colorado 80202");
+
+        TextView tvCell = (TextView) view.findViewById(R.id.tvCell);
+        tvCell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:"+getResources().getString(R.string.attorney_phone)));
+                startActivity(callIntent);
+            }
+        });
+
+        TextView tvEmail = (TextView) view.findViewById(R.id.tvEmail);
+        tvEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getResources().getString(R.string.attorney_email)});
+                i.putExtra(Intent.EXTRA_SUBJECT, "");
+                i.putExtra(Intent.EXTRA_TEXT   , "");
+                try {
+                    startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(getActivity(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);

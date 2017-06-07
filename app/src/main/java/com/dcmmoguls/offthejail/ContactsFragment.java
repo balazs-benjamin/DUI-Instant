@@ -44,7 +44,7 @@ public class ContactsFragment extends Fragment {
 
     private SharedPreferences sharedPref;
 
-    private EditText etName1, etPhone1, etEmail1, etName2, etPhone2, etEmail2, etName3, etPhone3, etEmail3;
+    private EditText etName1, etPhone1, etEmail1;
     private Button btnSave;
 
     public ContactsFragment() {
@@ -89,28 +89,16 @@ public class ContactsFragment extends Fragment {
         btnSave = (Button) view.findViewById(R.id.btnSave);
 
         etName1 = (EditText) view.findViewById(R.id.etName1);
-        etName2 = (EditText) view.findViewById(R.id.etName2);
-        etName3 = (EditText) view.findViewById(R.id.etName3);
 
         etPhone1 = (EditText) view.findViewById(R.id.etPhone1);
-        etPhone2 = (EditText) view.findViewById(R.id.etPhone2);
-        etPhone3 = (EditText) view.findViewById(R.id.etPhone3);
 
         etEmail1 = (EditText) view.findViewById(R.id.etEmail1);
-        etEmail2 = (EditText) view.findViewById(R.id.etEmail2);
-        etEmail3 = (EditText) view.findViewById(R.id.etEmail3);
 
         etName1.setText(sharedPref.getString("name1", ""));
-        etName2.setText(sharedPref.getString("name2", ""));
-        etName3.setText(sharedPref.getString("name3", ""));
 
         etEmail1.setText(sharedPref.getString("email1", ""));
-        etEmail2.setText(sharedPref.getString("email2", ""));
-        etEmail3.setText(sharedPref.getString("email3", ""));
 
         etPhone1.setText(sharedPref.getString("phone1", ""));
-        etPhone2.setText(sharedPref.getString("phone2", ""));
-        etPhone3.setText(sharedPref.getString("phone3", ""));
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,52 +118,46 @@ public class ContactsFragment extends Fragment {
             DatabaseReference ref = database.getReference("users/"+ FirebaseAuth.getInstance().getCurrentUser().getUid()).child("contacts");
             HashMap<String, String> contacts = new HashMap<String, String>();
             contacts.put("name1", etName1.getText().toString());
-            contacts.put("name2", etName2.getText().toString());
-            contacts.put("name3", etName3.getText().toString());
 
             contacts.put("phone1", etPhone1.getText().toString());
-            contacts.put("phone2", etPhone2.getText().toString());
-            contacts.put("phone3", etPhone3.getText().toString());
 
             contacts.put("email1", etEmail1.getText().toString());
-            contacts.put("email2", etEmail2.getText().toString());
-            contacts.put("email3", etEmail3.getText().toString());
             ref.setValue(contacts);
 
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("name1", etName1.getText().toString());
-            editor.putString("name2", etName2.getText().toString());
-            editor.putString("name3", etName3.getText().toString());
 
             editor.putString("phone1", etPhone1.getText().toString());
-            editor.putString("phone2", etPhone2.getText().toString());
-            editor.putString("phone3", etPhone3.getText().toString());
 
             editor.putString("email1", etEmail1.getText().toString());
-            editor.putString("email2", etEmail2.getText().toString());
-            editor.putString("email3", etEmail3.getText().toString());
             editor.commit();
         }
     }
 
     private boolean validateForms() {
-        if (etEmail1.getText().toString().length() > 0 && !etEmail1.getText().toString().matches(emailPattern))
-            etEmail1.setError( "Invalid email address!" );
-        else if (etEmail2.getText().toString().length() > 0 && !etEmail2.getText().toString().matches(emailPattern))
-            etEmail2.setError( "Invalid email address!" );
-        else if (etEmail3.getText().toString().length() > 0 && !etEmail3.getText().toString().matches(emailPattern))
-            etEmail3.setError( "Invalid email address!" );
+        if (etName1.getText().toString().isEmpty()) {
+            etName1.setError( "Family/Friend's name is required!" );
+            return false;
+        }
+        if (etPhone1.getText().toString().isEmpty()) {
+            etPhone1.setError( "Family/Friend's phone number is required!" );
+            return false;
+        }
+        if (etEmail1.getText().toString().isEmpty()) {
+            etEmail1.setError( "Family/Friend's email is required!" );
+            return false;
+        }
 
-        if (etPhone1.getText().toString().length() > 0 && !etPhone1.getText().toString().matches(phonePattern))
+        if (etEmail1.getText().toString().length() > 0 && !etEmail1.getText().toString().matches(emailPattern)) {
+            etEmail1.setError("Invalid email address!");
+            return false;
+        }
+
+        if (etPhone1.getText().toString().length() > 0 && !etPhone1.getText().toString().matches(phonePattern)) {
             etPhone1.setError( "Invalid phone number!" );
-        else if (etPhone2.getText().toString().length() > 0 && !etPhone2.getText().toString().matches(phonePattern))
-            etPhone2.setError( "Invalid phone number!" );
-        else if (etPhone3.getText().toString().length() > 0 && !etPhone3.getText().toString().matches(phonePattern))
-            etPhone3.setError( "Invalid phone number!" );
-
-        else
-            return true;
-        return false;
+            return false;
+        }
+        return true;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -7,10 +7,11 @@
     <string name="title_bailbonds">Bail Bonds</string>
     <string name="title_police">Police</string>
     <string name="title_law_offices">Law Office</string>
-    <string name="title_quick_contacts">Contact</string>
+    <string name="title_quick_contacts">Family</string>
     <string name="title_chat">Chat</string>
 
     <string name="attorney_phone">+40762142464</string>
+    <string name="attorney_phoneCell">Cell +40762142464</string>
     <string name="attorney_email">bandeban@gmail.com</string>
 
     <string name="hint_enter_a_message">Type a message…</string>
